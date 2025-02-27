@@ -8,7 +8,6 @@ export class Navbar extends Component {
     return (
         <header className="App-header">
             <nav>
-                {/* <img src={logo} className="App-logo" alt="logo" /> */}
                 <img src={myLogo} className="App-logo" alt="logo" />
                 <span>Chef Claude</span>
             </nav>

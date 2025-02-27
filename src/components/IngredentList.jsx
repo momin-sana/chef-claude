@@ -5,7 +5,7 @@ function IngredentList(props) {
 
     return (
         <div>
-            {/* Only display the ingredient list if there are ingredients */}
+            {/* Only display the ingredient list if there are ingredients to display */}
             {ingredientsList.length > 0 && <section>
                 <h2 className="ingredient-heading">Ingredients on hand:</h2>
 

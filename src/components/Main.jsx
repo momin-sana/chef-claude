@@ -18,7 +18,7 @@ function Main() {
     setLoading(true) // Set loading to true while fetching data
     try {
       const fetchRecipe = await getRecipeFromMistral(ingredients) // Call AI API for recipe
-      console.log(fetchRecipe) // Log response for debugging
+      // console.log(fetchRecipe) 
       setRecipe(fetchRecipe) // Store received recipe in state
     } catch (error) {
       console.error(error) // Log errors in case of failure
