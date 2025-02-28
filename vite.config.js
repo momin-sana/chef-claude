@@ -13,4 +13,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
+  build: {
+    rollupOptions: {
+      external: ['@huggingface/inference'] // Ensure it's externalized
+    }
+  },
+  base: '/chef-claude/',  
 });
