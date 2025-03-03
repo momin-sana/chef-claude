@@ -8,6 +8,7 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   plugins: [react()],
+  base: '/chef-claude/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
@@ -17,6 +18,5 @@ export default defineConfig({
     rollupOptions: {
       external: ['@huggingface/inference'] // Ensure it's externalized
     }
-  },
-  base: '/chef-claude/',  
+  }
 });
