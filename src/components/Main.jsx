@@ -1,7 +1,7 @@
 import React from 'react'
 import IngredentList from './IngredentList'
 import Recipe from './Recipe'
-import { getRecipeFromMistral } from '../ai'
+// import { getRecipeFromMistral } from '../ai'
 
 function Main() {
   // State to store the list of ingredients added by the user
@@ -24,16 +24,37 @@ function Main() {
   }, [recipe])
 
 // Function to fetch the recipe based on the ingredients list
+  // async function getRecipe() {
+  //   setLoading(true) // Set loading to true while fetching data
+  //   try {
+  //     const fetchRecipe = await getRecipeFromMistral(ingredients) // Call AI API for recipe
+  //     // console.log(fetchRecipe) 
+  //     setRecipe(fetchRecipe) // Store received recipe in state
+  //   } catch (error) {
+  //     console.error(error) // Log errors in case of failure
+  //   } finally {
+  //     setLoading(false) // Set loading to false after completion
+  //   }
+  // }
+
+// Function to fetch the recipe based on the ingredients list
   async function getRecipe() {
     setLoading(true) // Set loading to true while fetching data
     try {
-      const fetchRecipe = await getRecipeFromMistral(ingredients) // Call AI API for recipe
-      // console.log(fetchRecipe) 
-      setRecipe(fetchRecipe) // Store received recipe in state
+      // Instead of calling the API, use a temporary hardcoded recipe
+      const randomRecipes = [
+        "🍕 **Pizza**\n\n- Dough\n- Tomato sauce\n- Cheese\n- Toppings of choice\n\n**Instructions:** Bake at 200°C for 15 minutes.",
+        "🍝 **Pasta**\n\n- Spaghetti\n- Olive oil\n- Garlic\n- Tomato sauce\n\n**Instructions:** Cook spaghetti and mix with sauce.",
+        "🥗 **Salad**\n\n- Lettuce\n- Tomato\n- Cucumber\n- Dressing\n\n**Instructions:** Mix everything together and enjoy!",
+      ];
+      
+      const fetchRecipe = randomRecipes[Math.floor(Math.random() * randomRecipes.length)];
+      
+      setRecipe(fetchRecipe); // Store the hardcoded recipe in state
     } catch (error) {
-      console.error(error) // Log errors in case of failure
+      console.error(error); // Log errors in case of failure
     } finally {
-      setLoading(false) // Set loading to false after completion
+      setLoading(false); // Set loading to false after completion
     }
   }
 
