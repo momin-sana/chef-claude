@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 
-function Recipe({recipe}) {
+function Recipe({ recipe }) {
     return (
         <div>
             <section className='suggested-recipe-container'>

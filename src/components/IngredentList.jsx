@@ -1,7 +1,8 @@
 import React from 'react'
 
-function IngredentList(props) {
-    let ingredientsList = props.ingredientsListItems // List of ingredient elements
+function IngredentList({ recipeSection, ingredientsListItems, getRecipe }) {
+    let ingredientsList = ingredientsListItems // List of ingredient elements
+    console.log("Rendering IngredentList with ingredients:", ingredientsListItems); // Debugging
 
     return (
         <div>
@@ -20,7 +21,7 @@ function IngredentList(props) {
                     </div>
 
                     {/* Button to fetch recipe based on ingredients */}
-                    <button onClick={props.getRecipe}>Get a recipe</button>
+                    <button ref={recipeSection} onClick={getRecipe}>Get a recipe</button>
                 </div>}
             </section>}
         </div>

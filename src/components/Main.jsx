@@ -5,13 +5,23 @@ import { getRecipeFromMistral } from '../ai'
 
 function Main() {
   // State to store the list of ingredients added by the user
-  const [ingredients, setIngredients] = React.useState([""])
+  const [ingredients, setIngredients] = React.useState([])
 
   // State to store the generated recipe from AI
   const [recipe, setRecipe] = React.useState("")
 
   // State to manage loading status while fetching the recipe
   const [loading, setLoading] = React.useState(false)
+
+  // Reference to the recipe section for scrolling
+  const recipeSection = React.useRef(null)
+
+  // Scroll to the recipe section when recipe is updated
+  React.useEffect(() => {
+    if (recipe !== "" && recipeSection.current !== null) {
+      recipeSection.current.scrollIntoView({ behavior: "smooth" })
+    }
+  }, [recipe])
 
 // Function to fetch the recipe based on the ingredients list
   async function getRecipe() {
@@ -28,13 +38,15 @@ function Main() {
   }
 
   // Map ingredients array into list items for rendering
-  const ingredientsListItems = ingredients.map(ingredient => (
-    <li key={ingredient}>{ingredient}</li>
-  ))
+  const ingredientsListItems = ingredients
+  .filter(ingredient => ingredient.trim() !== "") // Remove empty items
+  .map((ingredient, index) => <li key={`${ingredient}-${index}`}>{ingredient}</li>)
+
 
     // Function to add a new ingredient from form input
   function addIngredient(formData) {
-    const newIngredient = formData.get("ingredient") // Extract ingredient value from form
+    const newIngredient = formData.get("ingredient")?.trim() // Extract ingredient value from form
+    if (!newIngredient) return // Prevent empty values
     setIngredients(prevIngredients => [...prevIngredients, newIngredient]) // Append new ingredient to list
   }
 
@@ -52,7 +64,7 @@ function Main() {
       </form>
 
 
-      <IngredentList ingredientsListItems={ingredientsListItems} getRecipe={getRecipe}/>
+      <IngredentList ingredientsListItems={ingredientsListItems} getRecipe={getRecipe} recipeSection={recipeSection}/>
 
       {/* Display loader when fetching recipe */}
       {loading && <div className="loader">.</div>}
